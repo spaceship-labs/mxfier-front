@@ -15,5 +15,6 @@ angular
     'ngCookies',
     'ngRoute',
     'ngSanitize',
-    'restangular'
+    'restangular',
+    'ngMaterial'
   ]);

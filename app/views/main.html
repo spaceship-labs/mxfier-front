@@ -1,1 +1,49 @@
-helloworld
+<div layout='column' layout-align='center' id='mainContainer' flex>
+  <md-toolbar>
+    <div class="md-toolbar-tools" layout='row'>
+      <h3 flex><a href='#!/'>Web Content Classifier</a></h3>
+      <md-button aria-label="Get Random" href='!#/settings' > <i class="material-icons">settings</i></md-button>
+      <md-button aria-label="Get Random" ng-click='vm.randomCompany()' > <i class="material-icons">autorenew</i></md-button>
+      <md-button aria-label="Save" ng-click='vm.saveClassification()' ng-disabled='!vm.results'> <i class="material-icons">save</i></md-button>
+    </div>
+  </md-toolbar>
+  <md-content flex>
+    <form ng-submit='vm.submit()' flex layout='row' layout-wrap>
+      <md-input-container flex>
+        <label>Search Term</label>
+        <input ng-model="vm.searchTerm">
+      </md-input-container>
+      <md-input-container>
+        <label># of Results</label>
+        <input ng-model="vm.perPage">
+      </md-input-container>
+      <md-button class="md-raised md-primary" type='submit'>Search</md-button>
+    </form>
+    <md-list flex ng-show="!(vm.loading || !vm.results.length)">
+      <md-subheader class="md-no-sticky">Search Results for {{vm.searchTerm}}</md-subheader>
+      <div layout='row' ng-repeat="(key,result) in vm.results" class='list-item-cont' ng-class="vm.findLink(result).category">
+        <div class='tip'>
+          <md-button class="md-raised md-mini md-primary" aria-label="Save" ng-click='vm.classify(result)'> <i class="material-icons">class</i></md-button>
+        </div>
+        <md-list-item flex class="md-3-line" ng-click="vm.changeCategory(result)">
+          <div class="md-list-item-text" layout='row'>
+            <div class='list-number md-padding'>
+              {{ result.pagerank }}
+            </div>
+            <div flex>
+              <h3>{{ result.title }}</h3>
+              <h4>{{ result.hostname }}</h4>
+              <p>{{ result.description }}</p>
+            </div>
+            <div ng-class='vm.categories[result.category].tag' class='classification label' layout-align='center center' layout='row'>{{vm.categories[result.category].label}}</div>
+            <div>
+            </div>
+          </div>
+        </md-list-item>
+      </div>
+    </md-list>
+    <div layout="row" layout-sm="column" layout-align="space-around" ng-show='vm.loading'>
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+  </md-content>
+</div>
