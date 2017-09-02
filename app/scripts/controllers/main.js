@@ -27,7 +27,7 @@ function mainCtrl(profilerApi) {
 
   vm.loading = false;
   vm.saving = false;
-  vm.perPage = 50;
+  vm.perPage = 10;
   vm.searchEngine = 'bing';
 
   vm.init();
@@ -97,8 +97,19 @@ function mainCtrl(profilerApi) {
 
   function setResults(results) {
     vm.results = results;
-    vm.results.map(initResultBing);
+    var mapper = getMapperBySearchEngine(vm.searchEngine);
+    vm.results.map(mapper);
     vm.loading = false;
+  }
+
+  function getMapperBySearchEngine(searchEngine){
+    var mapper;
+    if(searchEngine === 'bing'){
+      mapper = bingResultMapper;
+    }else{
+      mapper = googleResultMapper;
+    }
+    return mapper;
   }
 
   function setCategories(categories) {
@@ -118,7 +129,7 @@ function mainCtrl(profilerApi) {
 
 }
 
-function initResultBing(result, key) {
+function bingResultMapper(result, key) {
   //var result = result.plain();
   result.link = result.url;
   result.href = result.displayUrl;
@@ -130,7 +141,7 @@ function initResultBing(result, key) {
   return result;
 }
 
-function initResult(result, key) {
+function googleResultMapper(result, key) {
   //var result = result.plain();
   result.pagerank = key + 1;
   result.category = -1;
