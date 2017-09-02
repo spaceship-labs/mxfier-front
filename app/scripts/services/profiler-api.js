@@ -8,7 +8,7 @@
  * Service in the companyProfilerTrainerAp = function(){};
  */
 angular.module('companyProfilerTrainerApp')
-  .service('profilerApi', function(Restangular,$http) {
+  .service('profilerApi', function(Restangular, $http) {
 
     this.error = function(error) {
       return [];
@@ -18,8 +18,11 @@ angular.module('companyProfilerTrainerApp')
       return results;
     };
 
-    this.search = function(term, perPage) {
-      return Restangular.all('search').getList({ query: term, perPage: perPage }).then(this.returnResults, this.error);
+    this.search = function(term, perPage, engine) {
+      if (!engine) {
+        engine = 'google';
+      }
+      return Restangular.all('search').getList({ query: term, perPage: perPage, engine : engine }).then(this.returnResults, this.error);
     };
 
     this.getCategories = function() {
@@ -33,20 +36,28 @@ angular.module('companyProfilerTrainerApp')
       });
     };
 
+    this.linkStats = function() {
+      return Restangular.all('link/stats').getList();
+    };
+
+    this._test = function() {
+      return Restangular.one('main/test').get();
+    };
+
     this.getLinks = function(links) {
-      return Restangular.all('link').getList({ where: {link : links}, limit : 1000 });
+      return Restangular.all('link').getList({ where: { link: links }, limit: 1000 });
     };
 
-    this.classify = function(link){
-      return Restangular.all('classify').post({link:link.plain()});
+    this.classify = function(link) {
+      return Restangular.all('classify').post({ link: link.plain() });
 
-      
+
     };
 
-    this.randomCompany = function(){
+    this.randomCompany = function() {
       var count = 253491;
       var skip = Math.floor(Math.random() * count);
-      return $http.get('https://ctbook-api.herokuapp.com/empresa/', {params:{limit:1,skip:skip}})
+      return $http.get('https://ctbook-api.herokuapp.com/empresa/', { params: { limit: 1, skip: skip } });
     };
 
   });

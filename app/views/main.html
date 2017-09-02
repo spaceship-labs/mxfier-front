@@ -2,21 +2,26 @@
   <md-toolbar>
     <div class="md-toolbar-tools" layout='row'>
       <h3 flex><a href='#!/'>Web Content Classifier</a></h3>
-      <md-button aria-label="Get Random" href='!#/settings' > <i class="material-icons">settings</i></md-button>
-      <md-button aria-label="Get Random" ng-click='vm.randomCompany()' > <i class="material-icons">autorenew</i></md-button>
+      <md-button aria-label="Get Random" href='#!/settings'> <i class="material-icons">settings</i></md-button>
+      <md-button aria-label="Get Random" ng-click='vm.randomCompany()'> <i class="material-icons">autorenew</i></md-button>
       <md-button aria-label="Save" ng-click='vm.saveClassification()' ng-disabled='!vm.results'> <i class="material-icons">save</i></md-button>
     </div>
   </md-toolbar>
   <md-content flex>
-    <form ng-submit='vm.submit()' flex layout='row' layout-wrap>
+    <form ng-submit='vm.search()' flex layout='row' layout-wrap>
       <md-input-container flex>
         <label>Search Term</label>
         <input ng-model="vm.searchTerm">
       </md-input-container>
       <md-input-container>
-        <label># of Results</label>
+        <label>Max Results</label>
         <input ng-model="vm.perPage">
       </md-input-container>
+      <label></label>
+      <md-radio-group ng-model="vm.searchEngine" class='md-padding'>
+        <md-radio-button value="google">Google</md-radio-button>
+        <md-radio-button value="bing"> Bing</md-radio-button>
+      </md-radio-group>
       <md-button class="md-raised md-primary" type='submit'>Search</md-button>
     </form>
     <md-list flex ng-show="!(vm.loading || !vm.results.length)">
@@ -32,7 +37,7 @@
             </div>
             <div flex>
               <h3>{{ result.title }}</h3>
-              <h4>{{ result.hostname }}</h4>
+              <h4>{{ result.displayUrl }}</h4>
               <p>{{ result.description }}</p>
             </div>
             <div ng-class='vm.categories[result.category].tag' class='classification label' layout-align='center center' layout='row'>{{vm.categories[result.category].label}}</div>

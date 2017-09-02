@@ -16,5 +16,6 @@ angular
     'ngRoute',
     'ngSanitize',
     'restangular',
-    'ngMaterial'
+    'ngMaterial',
+    'chart.js' 
   ]);

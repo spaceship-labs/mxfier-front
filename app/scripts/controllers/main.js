@@ -21,15 +21,14 @@ function mainCtrl(profilerApi) {
   vm.randomCompany = randomCompany;
   vm.saveClassification = saveClassification;
   vm.normalizeResults = normalizeResults;
-  vm.submit = submit;
+  vm.search = search;
   vm.setResults = setResults;
   vm.init = init;
 
   vm.loading = false;
   vm.saving = false;
-  vm.perPage = 25;
-
-  vm.searchTerm = 'CONSTRUCCIONES LA COBADONGA';
+  vm.perPage = 50;
+  vm.searchEngine = 'bing';
 
   vm.init();
 
@@ -71,8 +70,8 @@ function mainCtrl(profilerApi) {
   function randomCompany() {
     profilerApi.randomCompany().then(function(response){
       var company = response.data[0];
-      vm.searchTerm = company.proveedor_contratista;
-    })
+      vm.searchTerm = '"' + company['proveedor_contratista'] + '"';
+    });
   }
 
   function saveClassification() {
@@ -83,9 +82,9 @@ function mainCtrl(profilerApi) {
     });
   }
 
-  function submit() {
+  function search() {
     profilerApi
-      .search(vm.searchTerm, vm.perPage)
+      .search(vm.searchTerm, vm.perPage, vm.searchEngine)
       .then(vm.setResults)
       .then(getLinks)
       .then(setLinks);
@@ -98,8 +97,7 @@ function mainCtrl(profilerApi) {
 
   function setResults(results) {
     vm.results = results;
-    vm.results.map(initResult);
-
+    vm.results.map(initResultBing);
     vm.loading = false;
   }
 
@@ -118,6 +116,18 @@ function mainCtrl(profilerApi) {
     return copy;
   }
 
+}
+
+function initResultBing(result, key) {
+  //var result = result.plain();
+  result.link = result.url;
+  result.href = result.displayUrl;
+  result.title = result.name;
+  result.description = result.snippet;
+  result.pagerank = key + 1;
+  result.category = -1;
+  result.hostname = getHostname(result.href);
+  return result;
 }
 
 function initResult(result, key) {

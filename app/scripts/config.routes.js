@@ -8,6 +8,11 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'vm'
       })
+      .when('/settings', {
+        templateUrl: 'views/settings.html',
+        controller: 'SettingsCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({
         redirectTo: '/'
       });

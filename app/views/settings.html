@@ -1,0 +1,45 @@
+<div layout='column' layout-align='center' flex>
+  <md-toolbar>
+    <div class="md-toolbar-tools" layout='row'>
+      <h3 flex><a href='#!/'>Web Content Classifier</a> / Settings</h3>
+      <md-button aria-label="Back" href='#!/'> <i class="material-icons">arrow_back</i></md-button>
+    </div>
+  </md-toolbar>
+  <md-content flex layout='row' layout-wrap>
+    <md-card class='md-padding'>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Training Dataset</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-title-media flex>
+        <h4>{{ vm.dataStats.total }} entries</h4>
+        <canvas class="chart chart-doughnut" chart-data="vm.dataStats.data" chart-labels="vm.dataStats.labels">
+        </canvas>
+      </md-card-title-media>
+    </md-card>
+    <md-card flex='50' class='md-padding'>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Test</span>
+          <form ng-submit='vm.test()' flex layout-wrap>
+            <md-input-container flex>
+              <label># of Tests</label>
+              <input ng-model="vm.testsToRun">
+            </md-input-container>
+            <md-button class="md-raised md-primary" type='submit'>Test</md-button>
+            <p>
+              {{100-vm.testStats.totalErrors/vm.testStats.totalTested*100}} %
+              
+            </p>
+            <p>{{vm.testStats.labels.length}}</p>
+          </form>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-title-media>
+        <canvas class="chart chart-line" chart-data="vm.testStats.data" chart-labels="vm.testStats.labels" chart-series="vm.testStats.series">
+        </canvas>
+      </md-card-title-media>
+    </md-card>
+  </md-content>
+</div>
