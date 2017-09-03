@@ -106,7 +106,11 @@ function mainCtrl(profilerApi) {
     var mapper;
     if(searchEngine === 'bing'){
       mapper = bingResultMapper;
-    }else{
+    }
+    if(searchEngine === 'ddg'){
+      mapper = ddgResultMapper;
+    }
+    else{
       mapper = googleResultMapper;
     }
     return mapper;
@@ -145,6 +149,15 @@ function googleResultMapper(result, key) {
   //var result = result.plain();
   result.pagerank = key + 1;
   result.category = -1;
+  result.hostname = getHostname(result.href);
+  return result;
+}
+
+function ddgResultMapper(result, key) {
+  //var result = result.plain();
+  result.pagerank = key + 1;
+  result.category = -1;
+  result.link = result.url;
   result.hostname = getHostname(result.href);
   return result;
 }
