@@ -29,6 +29,11 @@ angular.module('companyProfilerTrainerApp')
       return Restangular.all('category').getList();
     };
 
+    this.createCategory = function(category) {
+      return Restangular.all('category').post(category);
+    };
+
+
     this.saveLinks = function(links, query) {
       return Restangular.all('link/saveLinks').post({
         query: query,
@@ -50,8 +55,6 @@ angular.module('companyProfilerTrainerApp')
 
     this.classify = function(link) {
       return Restangular.all('classify').post({ link: link.plain() });
-
-
     };
 
     this.randomCompany = function() {

@@ -1,0 +1,23 @@
+<md-content>
+  <md-card flex='50' class='md-padding'>
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Crear categoria</span>
+        <p ng-if="vm.isCreatingCategory">Creando categoria...</p>
+        <form ng-if="!vm.isCreatingCategory" ng-submit='vm.createCategory()' flex layout-wrap>
+          <md-input-container flex>
+            <label>Label</label>
+            <input ng-model="vm.newCategory.label" required>
+          </md-input-container>
+
+          <md-input-container flex>
+            <label>Tag</label>
+            <input ng-model="vm.newCategory.tag" disabled required>
+          </md-input-container>
+
+          <md-button class="md-raised md-primary" type='submit'>Crear categoria</md-button>
+        </form>
+      </md-card-title-text>
+    </md-card-title>
+  </md-card>
+</md-content>
