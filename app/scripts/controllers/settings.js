@@ -105,13 +105,13 @@ function settingsCtrl(profilerApi, $q, $scope, $mdDialog) {
         .ok('Ok')
         .targetEvent(ev)
     );
-  };
+  }
 
   $scope.$watch('vm.newCategory.label',function(newVal, oldVal){
     if(newVal !== oldVal){
       vm.newCategory.tag = slugify(newVal);
     }
-  })
+  });
 
   function slugify(text){
     if(!text){

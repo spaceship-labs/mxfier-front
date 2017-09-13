@@ -22,7 +22,9 @@ angular.module('companyProfilerTrainerApp')
       if (!engine) {
         engine = 'google';
       }
-      return Restangular.all('search').getList({ query: term, perPage: perPage, engine : engine }).then(this.returnResults, this.error);
+      return Restangular.all('search')
+        .getList({ query: term, perPage: perPage, engine: engine })
+        .then(this.returnResults, this.error);
     };
 
     this.getCategories = function() {
