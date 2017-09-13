@@ -107,12 +107,13 @@ function mainCtrl(profilerApi) {
     if(searchEngine === 'bing'){
       mapper = bingResultMapper;
     }
-    if(searchEngine === 'ddg'){
+    else if(searchEngine === 'ddg'){
       mapper = ddgResultMapper;
     }
     else{
       mapper = googleResultMapper;
     }
+
     return mapper;
   }
 
@@ -135,7 +136,8 @@ function mainCtrl(profilerApi) {
 
 function bingResultMapper(result, key) {
   //var result = result.plain();
-  result.link = result.url;
+  //result.link = result.url;
+  result.link = result.displayUrl;
   result.href = result.displayUrl;
   result.title = result.name;
   result.description = result.snippet;
