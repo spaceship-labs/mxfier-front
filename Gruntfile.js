@@ -422,7 +422,7 @@ module.exports = function (grunt) {
 
     processhtml: {
       options: {
-        commentMarker: "process"
+        commentMarker: 'process'
       },
       dist: {
         files: [{

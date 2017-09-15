@@ -32,8 +32,8 @@ angular.module('companyProfilerTrainerApp')
 
     this.getEntities = function(page) {
       page = page ? page : 0;
-      var skip = page * 30;
-      return Restangular.all('entity').getList({ populate: 'webSearches', limit: 30, skip : skip });
+      var skip = page * 40;
+      return Restangular.all('entity').getList({ populate: 'webSearches', limit: 40, skip : skip });
     };
 
     this.getEntitiesCount = function(){

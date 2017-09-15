@@ -43,7 +43,7 @@ function entitiesCtrl(profilerApi, $location,$routeParams) {
   function setPagination(count){
     vm.pagination = {
       current : vm.page + 1,
-      total : Math.ceil(count.count/30)
+      total : Math.ceil(count.count/40)
     };
     vm.pagination.prev = vm.page > 0 ? vm.page : null;
     vm.pagination.next = vm.page < vm.pagination.total ?  vm.page + 2 : null;
