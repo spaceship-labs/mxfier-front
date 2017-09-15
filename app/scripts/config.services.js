@@ -3,8 +3,9 @@ angular
   .module('companyProfilerTrainerApp')
 
   .config(function(RestangularProvider) {
+    RestangularProvider.setBaseUrl('http://mxfier-api.herokuapp.com/');    
     //RestangularProvider.setBaseUrl('http://ctbook-api.herokuapp.com/');
-    RestangularProvider.setBaseUrl('http://localhost:1337/');
+    //RestangularProvider.setBaseUrl('http://localhost:1337/');
   })
   .config(function($mdThemingProvider) {
     $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
