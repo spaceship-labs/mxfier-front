@@ -1,5 +1,4 @@
-'use strict';
-
+'use strict'; 
 /**
  * @ngdoc service
  * @name companyProfilerTrainerApp.profilerApi
@@ -27,8 +26,8 @@ angular.module('companyProfilerTrainerApp')
         .then(this.returnResults, this.error);
     };
 
-    this.getCategories = function() {
-      return Restangular.all('category').getList();
+    this.getCategories = function() { 
+      return Restangular.all('category').getList(); 
     };
 
     this.getEntities = function() {
@@ -43,7 +42,7 @@ angular.module('companyProfilerTrainerApp')
           webSearch.searchResults = webSearch.searchResults.sort((a, b) => a.pageRank - b.pageRank);
           return webSearch;
         });
-    }
+    };
 
     this.createCategory = function(category) {
       return Restangular.all('category').post(category);
@@ -53,15 +52,15 @@ angular.module('companyProfilerTrainerApp')
       return Restangular.all('link/saveLinks').post({
         query: query,
         links: links
-      });
+      }); 
     };
 
     this.saveSearch = function(entityId,searchEngine){
       return Restangular.all('entity/saveSearch').post({
         entityId : entityId,
         searchEngine : searchEngine
-      })
-    }
+      });
+    };
 
     this.linkStats = function() {
       return Restangular.all('link/stats').getList();

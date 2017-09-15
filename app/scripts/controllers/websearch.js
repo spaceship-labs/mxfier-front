@@ -27,7 +27,7 @@ function websearchCtrl(profilerApi, $routeParams) {
     profilerApi.getWebSearch(vm.searchId).then(function(webSearch) {
       vm.loading = false;
       vm.webSearch = webSearch;
-    })
+    });
   }
 
 }
