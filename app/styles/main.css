@@ -89,12 +89,17 @@
   padding-bottom: 10px!important;
 }
 
+.toolbar-header .nav-icon{vertical-align: middle;}
+
 
 @media(max-width:960px){
   .site-title{font-size: 14px!important}
+  .toolbar-header .md-button{min-width: 40px;}
 }
 
 @media(max-width:600px){
+  .pagination-box span{font-size: 12px}
+  .toolbar-header .md-button{min-width: 20px;}
   .entity-item .md-list-item-text a{
     font-size: 12px!important;
   }
