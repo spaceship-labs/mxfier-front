@@ -418,7 +418,21 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
-    }
+    },
+
+    processhtml: {
+      options: {
+        commentMarker: "process"
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.dist %>',
+          src: ['index.html', 'index.html'],
+          dest: '<%= yeoman.dist %>'
+        }]
+      }
+    }    
   });
 
 
@@ -465,8 +479,9 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'filerev',
+    'processhtml',
     'usemin',
-    'htmlmin'
+    'htmlmin',
   ]);
 
   grunt.registerTask('default', [
