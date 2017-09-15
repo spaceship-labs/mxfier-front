@@ -8,6 +8,20 @@
 .classification.social{background-color:#6622AB;}
 .classification.government{background-color:#632721;}
 
+
+.label-color0{background-color:#888888!important;}
+.label-color1{background-color:#3F51B5!important;}
+.label-color2{background-color:#FF5722!important;}
+.label-color3{background-color:#FF5252!important;}
+.label-color4{background-color:#62AB52!important;}
+.label-color5{background-color:#6622AB!important;}
+.label-color6{background-color:#632721!important;}
+
+.list-item-cont .option-button{margin:0 2px;}
+.list-item-cont .list-label{position:relative;color:white;font-weight: bold;font-size:17px;width:380px;text-align: center;padding:20px;text-transform: uppercase;}
+.list-item-cont .list-label .remove{display:block;position:absolute;right:1px;top:1px;background-color:#ddd;color:black;padding:2px 6px 3px;font-weight: normal;font-size:11px;text-transform: none}
+
+
 .list-item-cont a{text-decoration: none;font-weight: bold;color:#446;}
 .list-item-cont.directory{background:rgba(63,81,181,0.2);}
 .list-item-cont.news{background:rgba(255,88,35,0.2);}
