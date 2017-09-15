@@ -30,8 +30,14 @@ angular.module('companyProfilerTrainerApp')
       return Restangular.all('category').getList();
     };
 
-    this.getEntities = function() {
-      return Restangular.all('entity').getList({ populate: 'webSearches', limit: 50 });
+    this.getEntities = function(page) {
+      page = page ? page : 0;
+      var skip = page * 30;
+      return Restangular.all('entity').getList({ populate: 'webSearches', limit: 30, skip : skip });
+    };
+
+    this.getEntitiesCount = function(){
+      return Restangular.one('entity/count').get(); 
     };
 
     this.getWebSearch = function(searchId) {

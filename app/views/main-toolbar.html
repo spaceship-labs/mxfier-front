@@ -1,0 +1,12 @@
+<md-toolbar>
+  <div class="md-toolbar-tools" layout='row'>
+    <h3 flex><a href='#!/'>Web Content Classifier</a></h3>
+    <div ng-show='vm.pagination'>
+    {{vm.pagination.current}} / {{vm.pagination.total}}
+      <md-button aria-label="Entities" ng-href='#!/entities/{{vm.pagination.prev}}' ng-show='vm.pagination.prev'><i class="material-icons">arrow_back</i></md-button>
+      <md-button aria-label="Settings" href='#!/entities/{{vm.pagination.next}}' ng-show='vm.pagination.next'> <i class="material-icons">arrow_forward</i></md-button>
+    </div>
+    <md-button aria-label="Entities" href='#!/entities'> <i class="material-icons">business</i></md-button>
+    <md-button aria-label="Settings" href='#!/settings'> <i class="material-icons">settings</i></md-button>
+  </div>
+</md-toolbar>
