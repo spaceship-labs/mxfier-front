@@ -1,4 +1,4 @@
-'use strict'; 
+'use strict';
 /**
  * @ngdoc service
  * @name companyProfilerTrainerApp.profilerApi
@@ -26,8 +26,8 @@ angular.module('companyProfilerTrainerApp')
         .then(this.returnResults, this.error);
     };
 
-    this.getCategories = function() { 
-      return Restangular.all('category').getList(); 
+    this.getCategories = function() {
+      return Restangular.all('category').getList();
     };
 
     this.getEntities = function() {
@@ -39,7 +39,9 @@ angular.module('companyProfilerTrainerApp')
         .one('webSearch', searchId)
         .get({ populate: 'searchResults' })
         .then(function(webSearch) {
-          webSearch.searchResults = webSearch.searchResults.sort((a, b) => a.pageRank - b.pageRank);
+          webSearch.searchResults = webSearch.searchResults.sort(function(a, b) {
+            return a.pageRank - b.pageRank;
+          });
           return webSearch;
         });
     };
@@ -52,14 +54,19 @@ angular.module('companyProfilerTrainerApp')
       return Restangular.all('link/saveLinks').post({
         query: query,
         links: links
-      }); 
+      });
     };
 
-    this.saveSearch = function(entityId,searchEngine){
+    this.saveSearch = function(entityId, searchEngine) {
       return Restangular.all('entity/saveSearch').post({
-        entityId : entityId,
-        searchEngine : searchEngine
+        entityId: entityId,
+        searchEngine: searchEngine
       });
+    };
+
+    this.saveSearchResultCategory = function(searchResult,category){
+      var tag = category ? category.tag : null;
+      return Restangular.one('searchResult').post(searchResult.id,{category:tag});
     };
 
     this.linkStats = function() {
