@@ -1,0 +1,39 @@
+<div layout='column' layout-align='center' id='mainContainer' flex>
+  <md-toolbar>
+    <div class="md-toolbar-tools" layout='row'>
+      <h3 flex><a href='#!/'>Web Content Classifier</a></h3>
+      <md-button aria-label="Entities" href='#!/entities'> <i class="material-icons">business</i></md-button>
+      <md-button aria-label="Settings" href='#!/settings'> <i class="material-icons">settings</i></md-button>
+      <md-button aria-label="Get Random" ng-click='vm.randomCompany()'> <i class="material-icons">autorenew</i></md-button>
+      <md-button aria-label="Save" ng-click='vm.saveClassification()' ng-disabled='!vm.results'> <i class="material-icons">save</i></md-button>
+    </div>
+  </md-toolbar>
+  <md-content flex>
+    <md-list flex ng-show="!vm.loading">
+      <md-subheader class="md-no-sticky">Search Results for {{vm.webSearch.term}}</md-subheader>
+      <div layout='row' ng-repeat="(key,result) in vm.webSearch.searchResults" class='list-item-cont' ng-class="vm.findLink(result).category">
+       <md-list-item flex class="md-3-line" ng-click="vm.changeCategory(result)">
+          <div class="md-list-item-text" layout='row'>
+            <div class='list-number md-padding'>
+              {{ result.pageRank }}
+            </div>
+            <div flex>
+              <h3>{{ result.title }}</h3>
+              <h4>{{ result.link }} | {{result.searchEngine }}</h4>
+              <p>{{ result.description }}</p>
+            </div>
+            <div ng-class='vm.categories[result.category].tag' class='classification label' layout-align='center center' layout='row'>{{vm.categories[result.category].label}}</div>
+            <div>
+            </div>
+          </div>
+        </md-list-item>
+      </div>
+    </md-list>
+    <div class="progressContainer" ng-show='vm.loading'>
+      <md-progress-linear md-mode="query"></md-progress-linear>
+      <div class="bottom-block">
+        <span>Cargando Resultados...</span>
+      </div>
+    </div>
+  </md-content>
+</div>

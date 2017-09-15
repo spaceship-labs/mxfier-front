@@ -8,6 +8,7 @@
 .classification.social{background-color:#6622AB;}
 .classification.government{background-color:#632721;}
 
+.list-item-cont a{text-decoration: none;font-weight: bold;color:#446;}
 .list-item-cont.directory{background:rgba(63,81,181,0.2);}
 .list-item-cont.news{background:rgba(255,88,35,0.2);}
 .list-item-cont.investigation{background:rgba(240,93,93,0.2);}
@@ -15,6 +16,17 @@
 .list-item-cont.social{background:rgba(102,34,171,0.2);}
 .list-item-cont.social{background:rgba(11,63,58,0.2);}
 .list-item-cont.government{background-color:rgba(108,56,51,0.2);}
+
+.list-item-cont button{font-size:10px;margin:7px 0;}
+
+.list-item-cont button.bing{background-color: #b9b9b9!important;}
+.list-item-cont button.ddg{background-color: #DE5833!important;}
+.list-item-cont button.google{background-color: #FBBC05!important;}
+
+
+.list-item-cont span.bing{color: #b9b9b9!important;}
+.list-item-cont span.ddg{color: #DE5833!important;}
+.list-item-cont span.google{color: #FBBC05!important;}
 
 #mainContainer {
   height: 100vh;
@@ -29,3 +41,24 @@
 #radar{
   background:white;
 }
+
+.progressContainer {
+  display: block;
+  position: relative;
+  width: 100%;
+  border: 2px solid #aad1f9;
+  transition: opacity  0.1s linear;
+  border-top: 0px; }
+
+.progressContainer .bottom-block {
+  display: block;
+  position: relative;
+  background-color: rgba(255, 235, 169, 0.25);
+  height: 85px;
+  width: 100%; }
+
+.progressContainer .bottom-block > span {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 25px;
+  font-size: 0.9em; }

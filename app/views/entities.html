@@ -1,0 +1,31 @@
+<div layout='column' layout-align='center' flex>
+  <md-toolbar>
+    <div class="md-toolbar-tools" layout='row'>
+      <h3 flex><a href='#!/'>Web Content Classifier</a> / Entities</h3>
+      <md-button aria-label="Back" href='#!/'> <i class="material-icons">arrow_back</i></md-button>
+    </div>
+  </md-toolbar>
+  <md-content flex layout='row' layout-wrap class='md-padding'>
+    <div class="progressContainer" ng-show='vm.loading'>
+      <md-progress-linear md-mode="query"></md-progress-linear>
+      <div class="bottom-block">
+        <span>Cargando Entidades...</span>
+      </div>
+    </div>
+    <div class='list-item-cont' ng-show='!vm.loading' flex>
+      <md-list flex>
+        <md-list-item class="md-2-line" layout='row' ng-repeat='entity in vm.entities'>
+          <div class="md-list-item-text" flex>
+            <h3>{{entity.name}}</h3>
+            <p ng-repeat='webSearch in entity.webSearches' ><a ng-href='#!/webSearch/{{webSearch.id}}'>{{webSearch.term}} - <span ng-class='webSearch.searchEngine'>{{ webSearch.searchEngine}} </span>{{webSearch.createdAt | date : 'short'}}</a> </p>
+          </div>
+          <div class='buttons'>
+            <md-button ng-disabled='entity.searching' ng-click='vm.crawl(entity,"bing")' class="md-raised bing">Bing</md-button>
+            <md-button ng-disabled='entity.searching' ng-click='vm.crawl(entity,"ddg")' class="md-raised ddg">Duck duck go</md-button>
+            <md-button ng-disabled='entity.searching' ng-click='vm.crawl(entity,"google")' class="md-raised google">Google</md-button>
+          </div>
+        </md-list-item>
+      </md-list>
+    </div>
+  </md-content>
+</div>

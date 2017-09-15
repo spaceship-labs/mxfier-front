@@ -13,6 +13,16 @@ angular
         controller: 'SettingsCtrl',
         controllerAs: 'vm'
       })
+      .when('/entities', {
+        templateUrl: 'views/entities.html',
+        controller: 'EntitiesCtrl',
+        controllerAs: 'vm'
+      })
+      .when('/webSearch/:searchId', {
+        templateUrl: 'views/websearch.html',
+        controller: 'WebsearchCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({
         redirectTo: '/'
       });

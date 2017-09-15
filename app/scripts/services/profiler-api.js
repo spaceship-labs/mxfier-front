@@ -31,10 +31,23 @@ angular.module('companyProfilerTrainerApp')
       return Restangular.all('category').getList();
     };
 
+    this.getEntities = function() {
+      return Restangular.all('entity').getList({ populate: 'webSearches', limit: 50 });
+    };
+
+    this.getWebSearch = function(searchId) {
+      return Restangular
+        .one('webSearch', searchId)
+        .get({ populate: 'searchResults' })
+        .then(function(webSearch) {
+          webSearch.searchResults = webSearch.searchResults.sort((a, b) => a.pageRank - b.pageRank);
+          return webSearch;
+        });
+    }
+
     this.createCategory = function(category) {
       return Restangular.all('category').post(category);
     };
-
 
     this.saveLinks = function(links, query) {
       return Restangular.all('link/saveLinks').post({
@@ -42,6 +55,13 @@ angular.module('companyProfilerTrainerApp')
         links: links
       });
     };
+
+    this.saveSearch = function(entityId,searchEngine){
+      return Restangular.all('entity/saveSearch').post({
+        entityId : entityId,
+        searchEngine : searchEngine
+      })
+    }
 
     this.linkStats = function() {
       return Restangular.all('link/stats').getList();
