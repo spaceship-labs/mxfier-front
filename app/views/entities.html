@@ -1,10 +1,5 @@
 <div layout='column' layout-align='center' flex>
-  <md-toolbar>
-    <div class="md-toolbar-tools" layout='row'>
-      <h3 flex><a href='#!/'>Web Content Classifier</a> / Entities</h3>
-      <md-button aria-label="Back" href='#!/'> <i class="material-icons">arrow_back</i></md-button>
-    </div>
-  </md-toolbar>
+  <ng-include src="'views/main-toolbar.html'"></ng-include>
   <md-content flex layout='row' layout-wrap class='md-padding'>
     <div class="progressContainer" ng-show='vm.loading'>
       <md-progress-linear md-mode="query"></md-progress-linear>

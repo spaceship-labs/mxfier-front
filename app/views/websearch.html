@@ -1,13 +1,5 @@
 <div layout='column' layout-align='center' id='mainContainer' flex>
-  <md-toolbar>
-    <div class="md-toolbar-tools" layout='row'>
-      <h3 flex><a href='#!/'>Web Content Classifier</a></h3>
-      <md-button aria-label="Entities" href='#!/entities'> <i class="material-icons">business</i></md-button>
-      <md-button aria-label="Settings" href='#!/settings'> <i class="material-icons">settings</i></md-button>
-      <md-button aria-label="Get Random" ng-click='vm.randomCompany()'> <i class="material-icons">autorenew</i></md-button>
-      <md-button aria-label="Save" ng-click='vm.saveClassification()' ng-disabled='!vm.results'> <i class="material-icons">save</i></md-button>
-    </div>
-  </md-toolbar>
+  <ng-include src="'views/main-toolbar.html'"></ng-include>
   <md-content flex>
     <md-list flex ng-show="!vm.loading">
       <md-subheader class="md-no-sticky">Search Results for {{vm.webSearch.term}} | {{vm.webSearch.searchEngine}} </md-subheader>
@@ -23,7 +15,7 @@
               <p>{{ result.description }}</p>
             </div>
             <div layout-align='center center'>
-              <md-progress-linear ng-show='result.saving' ></md-progress-linear>
+              <md-progress-linear ng-show='result.saving'></md-progress-linear>
               <div ng-hide='result.category'>
                 <md-button class='md-primary md-fab option-button label-color{{key}}' ng-disabled='result.saving' ng-repeat='(key,cat) in vm.categories' ng-click='vm.changeCategory(result,cat)'>{{ cat.label | limitTo : 4}}</md-button>
               </div>
