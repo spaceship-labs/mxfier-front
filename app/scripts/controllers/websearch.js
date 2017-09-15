@@ -51,7 +51,11 @@ function websearchCtrl(profilerApi, $routeParams, $scope) {
 
     profilerApi
       .getWebSearch(vm.searchId)
-      .then(setWebSearch);
+      .then(setWebSearch)
+      .then(profilerApi.getSearchResults)
+      .then(function(results){
+        vm.webSearch.searchResults = results;
+      });
   }
 
   function setCategories(categories) {
@@ -62,6 +66,7 @@ function websearchCtrl(profilerApi, $routeParams, $scope) {
   function setWebSearch(webSearch) {
     vm.loading = false;
     vm.webSearch = webSearch;
+    return vm.webSearch.id;
   }
 
 

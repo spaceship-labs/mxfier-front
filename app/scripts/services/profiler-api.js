@@ -37,13 +37,18 @@ angular.module('companyProfilerTrainerApp')
     this.getWebSearch = function(searchId) {
       return Restangular
         .one('webSearch', searchId)
-        .get({ populate: 'searchResults' })
+        .get();
+       /* .get({ populate: 'searchResults' })
         .then(function(webSearch) {
           webSearch.searchResults = webSearch.searchResults.sort(function(a, b) {
             return a.pageRank - b.pageRank;
           });
           return webSearch;
-        });
+        });*/
+    };
+
+    this.getSearchResults = function(searchId){
+      return Restangular.one('webSearch',searchId).getList('searchResults',{limit:50,sort:'pageRank'});
     };
 
     this.createCategory = function(category) {
