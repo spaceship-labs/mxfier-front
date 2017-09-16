@@ -4,8 +4,8 @@
     <md-list flex ng-show="!vm.loading">
       <md-subheader class="md-no-sticky">Search Results for {{vm.webSearch.term}} | {{vm.webSearch.searchEngine}} </md-subheader>
       <div layout='row' ng-repeat="result in vm.webSearch.searchResults" class='list-item-cont'>
-        <md-list-item flex class="md-3-line">
-          <div class="md-list-item-text" layout='row'>
+        <md-list-item flex class="md-3-line websearch-item">
+          <div class="md-list-item-text" layout='row' layout-wrap>
             <div class='list-number md-padding'>
               {{ result.pageRank }}
             </div>

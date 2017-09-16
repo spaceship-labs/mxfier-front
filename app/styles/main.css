@@ -76,3 +76,34 @@
   margin-top: 10px;
   padding: 25px;
   font-size: 0.9em; }
+
+.entity-item{
+  border-bottom: 1px solid rgba(63,81,181, 0.6);
+  margin-bottom: 10px;
+  padding-bottom: 10px!important;
+}
+
+.websearch-item{
+  border-bottom: 1px solid rgba(63,81,181,0.4);
+  margin-bottom: 10px;
+  padding-bottom: 10px!important;
+}
+
+.toolbar-header .nav-icon{vertical-align: middle;}
+
+
+@media(max-width:960px){
+  .site-title{font-size: 14px!important}
+  .toolbar-header .md-button{min-width: 40px;}
+}
+
+@media(max-width:600px){
+  .pagination-box span{font-size: 12px}
+  .toolbar-header .md-button{min-width: 20px;}
+  .entity-item .md-list-item-text a{
+    font-size: 12px!important;
+  }
+
+  .websearch-item h3{font-size: 14px;}
+  .websearch-item .md-list-item-text p{font-size: 12px}
+}
