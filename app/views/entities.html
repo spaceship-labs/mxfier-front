@@ -1,18 +1,26 @@
 <div layout='column' layout-align='center' flex>
   <ng-include src="'views/main-toolbar.html'"></ng-include>
   <md-content flex layout='row' layout-wrap class='md-padding'>
-    <div class="progressContainer" ng-show='vm.loading'>
+    <div class="progressContainer" flex='100' ng-show='vm.loading'>
       <md-progress-linear md-mode="query"></md-progress-linear>
       <div class="bottom-block">
-        <span>Cargando Entidades...</span>
+        <span>Loading Entities...</span>
       </div>
     </div>
-    <div class='list-item-cont' ng-show='!vm.loading' flex>
+    <md-autocomplete ng-disabled='vm.creatingEntity' flex='100' md-selected-item-change="vm.addEntity(item)" md-search-text="vm.entitySearch" md-items="item in vm.autocomplete(vm.entitySearch)" md-item-text="item.proveedor_contratista" md-min-length="2" md-floating-label="Search for Contratobook.org Entity">
+      <md-item-template>
+        <span md-highlight-text="vm.entitySearch" md-highlight-flags="^i">{{item.proveedor_contratista}}</span>
+      </md-item-template>
+      <md-not-found>
+        No results found
+      </md-not-found>
+    </md-autocomplete>
+    <div class='list-item-cont' ng-show='!vm.loading' flex='100'>
       <md-list flex>
         <md-list-item class="md-2-line" layout='row' ng-repeat='entity in vm.entities'>
           <div class="md-list-item-text" flex>
             <h3>{{entity.name}}</h3>
-            <p ng-repeat='webSearch in entity.webSearches' ><a ng-href='#!/webSearch/{{webSearch.id}}'>{{webSearch.term}} - <span ng-class='webSearch.searchEngine'>{{ webSearch.searchEngine}} </span>{{webSearch.createdAt | date : 'short'}}</a> </p>
+            <p ng-repeat='webSearch in entity.webSearches'><a ng-href='#!/webSearch/{{webSearch.id}}'>{{webSearch.term}} - <span ng-class='webSearch.searchEngine'>{{ webSearch.searchEngine}} </span>{{webSearch.createdAt | date : 'short'}}</a> </p>
           </div>
           <div class='buttons'>
             <md-button ng-disabled='entity.searching' ng-click='vm.crawl(entity,"bing")' class="md-fab bing">Bing</md-button>

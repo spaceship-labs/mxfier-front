@@ -26,35 +26,37 @@ angular.module('companyProfilerTrainerApp')
         .then(this.returnResults, this.error);
     };
 
+    this.createEntity = function(entity){
+      return Restangular.all('entity').post(entity);
+    }
+
     this.getCategories = function() {
       return Restangular.all('category').getList();
+    };
+
+    this.getCompanies = function(params) {
+      return $http.get('https://ctbook-api.herokuapp.com/empresa/', { params: params })
+        .then(function(res) {
+          return res.data;
+        });
     };
 
     this.getEntities = function(page) {
       page = page ? page : 0;
       var skip = page * 40;
-      return Restangular.all('entity').getList({ populate: 'webSearches', limit: 40, skip : skip });
+      return Restangular.all('entity').getList({ populate: 'webSearches', limit: 40, skip: skip, sort : 'createdAt DESC' });
     };
 
-    this.getEntitiesCount = function(){
-      return Restangular.one('entity/count').get(); 
+    this.getEntitiesCount = function() {
+      return Restangular.one('entity/count').get();
     };
 
     this.getWebSearch = function(searchId) {
-      return Restangular
-        .one('webSearch', searchId)
-        .get();
-       /* .get({ populate: 'searchResults' })
-        .then(function(webSearch) {
-          webSearch.searchResults = webSearch.searchResults.sort(function(a, b) {
-            return a.pageRank - b.pageRank;
-          });
-          return webSearch;
-        });*/
+      return Restangular.one('webSearch', searchId).get();
     };
 
-    this.getSearchResults = function(searchId){
-      return Restangular.one('webSearch',searchId).getList('searchResults',{limit:50,sort:'pageRank'});
+    this.getSearchResults = function(searchId) {
+      return Restangular.one('webSearch', searchId).getList('searchResults', { limit: 50, sort: 'pageRank' });
     };
 
     this.createCategory = function(category) {
@@ -75,9 +77,9 @@ angular.module('companyProfilerTrainerApp')
       });
     };
 
-    this.saveSearchResultCategory = function(searchResult,category){
+    this.saveSearchResultCategory = function(searchResult, category) {
       var tag = category ? category.tag : null;
-      return Restangular.one('searchResult').post(searchResult.id,{category:tag});
+      return Restangular.one('searchResult').post(searchResult.id, { category: tag });
     };
 
     this.linkStats = function() {

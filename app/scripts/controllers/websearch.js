@@ -28,7 +28,6 @@ function websearchCtrl(profilerApi, $routeParams, $scope) {
     .then(function(_searchResult){
       //searchResult.saving = false;
       angular.copy(_searchResult.plain(),searchResult);
-      console.log(searchResult);
     });
   }
 
