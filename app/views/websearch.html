@@ -34,9 +34,10 @@
             <div layout-align='center center'>
               <md-progress-linear ng-show='result.saving'></md-progress-linear>
               <md-button class='md-raised option-button classification' ng-class='vm.getCategoryColor(result.aiCategory)' ng-show='result.aiCategory'>{{result.aiCategory}}</md-button>
-              <div ng-hide='result.category'>
-                <md-button class='md-primary md-fab option-button label-color{{key}}' ng-disabled='result.saving' ng-repeat='(key,cat) in vm.categories' ng-click='vm.changeCategory(result,cat)'>{{ cat.label | limitTo : 4}}</md-button>
-              </div>
+              <!-- <div ng-hide='result.category'>
+                <md-button class='md-primary md-fab option-button label-color{{key}}' ng-disabled='result.saving' ng-repeat='(key,cat) in vm.categories' ng-click='vm.changeCategory(result,cat)'>
+                {{ cat.label | limitTo : 4}}</md-button>
+              </div> -->
               <div ng-show='result.category' class='list-label' ng-class='vm.getCategoryColor(result.category)'>
                 {{result.category}}
                 <a ng-click='vm.changeCategory(result,null)' ng-hide='result.saving' class='remove'>x</a>
@@ -52,7 +53,7 @@
     <div class="progressContainer" ng-show='vm.loading'>
       <md-progress-linear md-mode="query"></md-progress-linear>
       <div class="bottom-block">
-        <span>Cargando Resultados...</span>
+        <span>Loading Results...</span>
       </div>
     </div>
   </md-content>

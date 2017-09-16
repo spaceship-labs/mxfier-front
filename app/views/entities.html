@@ -22,11 +22,11 @@
             <h3>{{entity.name}}</h3>
             <p ng-repeat='webSearch in entity.webSearches'><a ng-href='#!/webSearch/{{webSearch.id}}'>{{webSearch.term}} - <span ng-class='webSearch.searchEngine'>{{ webSearch.searchEngine}} </span>{{webSearch.createdAt | date : 'short'}}</a> </p>
           </div>
-          <div class='buttons' flex-sm="100" flex-xs="100" flex-order-sm="1" flex-order-xs="1">
+         <!--  <div class='buttons' flex-sm="100" flex-xs="100" flex-order-sm="1" flex-order-xs="1">
             <md-button ng-disabled='entity.searching' ng-click='vm.crawl(entity,"bing")' class="md-fab bing">Bing</md-button>
             <md-button ng-disabled='entity.searching' ng-click='vm.crawl(entity,"ddg")' class="md-fab ddg">DDG</md-button>
             <md-button ng-disabled='entity.searching' ng-click='vm.crawl(entity,"google")' class="md-fab google">Google</md-button>
-          </div>
+          </div> -->
         </md-list-item>
       </md-list>
     </div>
