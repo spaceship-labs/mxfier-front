@@ -26,9 +26,13 @@ angular.module('companyProfilerTrainerApp')
         .then(this.returnResults, this.error);
     };
 
-    this.createEntity = function(entity){
+    this.createEntity = function(entity) {
       return Restangular.all('entity').post(entity);
-    }
+    };
+
+    this.classifyWebSearch = function(webSearchId){
+      return Restangular.all('webSearch/classify').getList({webSearchId:webSearchId});
+    };
 
     this.getCategories = function() {
       return Restangular.all('category').getList();
@@ -44,7 +48,8 @@ angular.module('companyProfilerTrainerApp')
     this.getEntities = function(page) {
       page = page ? page : 0;
       var skip = page * 40;
-      return Restangular.all('entity').getList({ populate: 'webSearches', limit: 40, skip: skip, sort : 'createdAt DESC' });
+      return Restangular.all('entity')
+        .getList({ populate: 'webSearches', limit: 40, skip: skip, sort: 'createdAt DESC' });
     };
 
     this.getEntitiesCount = function() {

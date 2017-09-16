@@ -77,7 +77,4 @@ function entitiesCtrl(profilerApi, $location, $routeParams) {
     return vm.entities;
   }
 
-
-
-
 }

@@ -15,12 +15,20 @@ function websearchCtrl(profilerApi, $routeParams, $scope) {
   var vm = this;
 
   vm.changeCategory = changeCategory;
+  vm.classify = classify;
   vm.getCategoryColor = getCategoryColor;
   vm.init = init;
 
   vm.loading = true;
 
   vm.init();
+
+  function classify(){
+    profilerApi.classifyWebSearch(vm.webSearch.id)
+    .then(function(results){
+      vm.webSearch.searchResults = results;
+    });
+  }
 
   function changeCategory(searchResult,category){
     searchResult.saving = true;
