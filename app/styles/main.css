@@ -18,7 +18,8 @@
 .label-color6{background-color:#632721!important;}
 
 .list-item-cont .option-button{margin:0 2px;}
-.list-item-cont .list-label{position:relative;color:white;font-weight: bold;font-size:17px;width:380px;text-align: center;padding:20px;text-transform: uppercase;}
+.list-item-cont .option-button.classification{margin:0;border-radius: 0;color:white;}
+.list-item-cont .list-label{position:relative;color:white;font-weight: bold;font-size:17px;width:420px;text-align: center;padding:20px;text-transform: uppercase;}
 .list-item-cont .list-label .remove{display:block;position:absolute;right:1px;top:1px;background-color:#ddd;color:black;padding:2px 6px 3px;font-weight: normal;font-size:11px;text-transform: none}
 
 
