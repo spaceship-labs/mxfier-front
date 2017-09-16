@@ -12,7 +12,7 @@
         <form flex='20'>
           <label>Filter Category</label>
           <md-select ng-model="vm.categoryFilter">
-            <md-option ><em>None</em></md-option>
+            <md-option ><em>All</em></md-option>
             <md-option ng-repeat="cat in vm.categories" ng-value="cat.tag">
               {{cat.label}}
             </md-option>
@@ -20,7 +20,7 @@
           </md-input-container>
         </form>
       </div>
-      <div layout='row' ng-repeat="result in vm.webSearch.searchResults" class='list-item-cont' ng-show='!vm.categoryFilter || vm.categoryFilter === "None" || vm.categoryFilter === result.category || vm.categoryFilter === result.aiCategory'>
+      <div layout='row' ng-repeat="result in vm.webSearch.searchResults" class='list-item-cont' ng-show='!vm.categoryFilter || vm.categoryFilter === "All" || vm.categoryFilter === result.category || vm.categoryFilter === result.aiCategory'>
         <md-list-item flex class="md-3-line websearch-item">
           <div class="md-list-item-text" layout='row' layout-wrap>
             <div class='list-number md-padding'>
@@ -28,7 +28,7 @@
             </div>
             <div flex>
               <h3>{{ result.title }}</h3>
-              <h4>{{ result.link }} | {{result.searchEngine }}</h4>
+              <h4><a ng-href='{{result.link}}' target='_blank'>{{ result.link }}</a> </h4>
               <p>{{ result.description }}</p>
             </div>
             <div layout-align='center center'>
