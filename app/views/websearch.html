@@ -2,10 +2,25 @@
   <ng-include src="'views/main-toolbar.html'"></ng-include>
   <md-content flex>
     <md-list flex ng-show="!vm.loading">
-      <md-subheader class="md-no-sticky">Search Results for {{vm.webSearch.term}} | {{vm.webSearch.searchEngine}}
-        <md-button class='md-raised md-primary' ng-click='vm.classify();'>Classify</md-button>
-      </md-subheader>
-      <div layout='row' ng-repeat="result in vm.webSearch.searchResults" class='list-item-cont'>
+      <div layout='row'>
+        <md-subheader flex layout='row' class="md-no-sticky">
+          <span flex>
+          Search Results for {{vm.webSearch.term}} | {{vm.webSearch.searchEngine}}
+          <md-button class='md-raised md-primary' ng-click='vm.classify();'>Classify</md-button>
+        </span>
+        </md-subheader>
+        <form flex='20'>
+          <label>Filter Category</label>
+          <md-select ng-model="vm.categoryFilter">
+            <md-option ><em>None</em></md-option>
+            <md-option ng-repeat="cat in vm.categories" ng-value="cat.tag">
+              {{cat.label}}
+            </md-option>
+          </md-select>
+          </md-input-container>
+        </form>
+      </div>
+      <div layout='row' ng-repeat="result in vm.webSearch.searchResults" class='list-item-cont' ng-show='!vm.categoryFilter || vm.categoryFilter === "None" || vm.categoryFilter === result.category || vm.categoryFilter === result.aiCategory'>
         <md-list-item flex class="md-3-line websearch-item">
           <div class="md-list-item-text" layout='row' layout-wrap>
             <div class='list-number md-padding'>
@@ -18,9 +33,7 @@
             </div>
             <div layout-align='center center'>
               <md-progress-linear ng-show='result.saving'></md-progress-linear>
-              
               <md-button class='md-raised option-button classification' ng-class='vm.getCategoryColor(result.aiCategory)' ng-show='result.aiCategory'>{{result.aiCategory}}</md-button>
-              
               <div ng-hide='result.category'>
                 <md-button class='md-primary md-fab option-button label-color{{key}}' ng-disabled='result.saving' ng-repeat='(key,cat) in vm.categories' ng-click='vm.changeCategory(result,cat)'>{{ cat.label | limitTo : 4}}</md-button>
               </div>
